@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply to Team 00</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Team 00 Application</h1>
+  </header>
+
+  <section>
+    <form id="applicationForm">
+      <label>Hours Played</label>
+      <input type="text" name="hours" required>
+
+      <label>Gmail</label>
+      <input type="email" name="email" required>
+
+      <label>Discord Username</label>
+      <input type="text" name="discord" required>
+
+      <label>TikTok Username</label>
+      <input type="text" name="tiktok" required>
+
+      <label>Clip (Optional)</label>
+      <input type="url" name="clip">
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("E_tcrx-7UmpTqQVwt");
+
+    document.getElementById("applicationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      emailjs.send("service_xulzydn", "template_ubyzf6c", {
+        hours: this.hours.value,
+        email: this.email.value,
+        discord: this.discord.value,
+        tiktok: this.tiktok.value,
+        clip: this.clip.value
+      }).then(function() {
+        alert("Application submitted! Check your email.");
+        window.location.href = "index.html"; // Redirect back to homepage
+      }).catch(function(error) {
+        alert("Error in submission: " + error);
+      });
+    });
+  </script>
+
+</body>
+</html>
